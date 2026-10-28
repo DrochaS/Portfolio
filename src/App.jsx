@@ -23,6 +23,7 @@ const projects = [
     stack: ['React', 'Flask', 'PostgreSQL', 'SQLAlchemy'],
     result: 'Optimized database queries by 30%',
     link: 'https://haven-key-t4bo.vercel.app',
+    preview: 'property',
     featured: true,
   },
   {
@@ -34,6 +35,7 @@ const projects = [
     stack: ['React', 'Redux', 'Flask', 'PostgreSQL'],
     result: 'Reduced API response payloads by 25%',
     link: 'https://myduka-frontend-2c4t.vercel.app/login',
+    preview: 'retail',
   },
   {
     number: '03',
@@ -179,6 +181,51 @@ function App() {
             <div className="project-list">
               {projects.map((project) => (
                 <article className={`project-card${project.featured ? ' featured-project' : ''}`} key={project.number}>
+                  {project.preview && (
+                    <div
+                      className={`project-preview ${project.preview}-preview`}
+                      role="img"
+                      aria-label={`${project.name} application interface mockup`}
+                    >
+                      <div className="preview-window-bar">
+                        <span /><span /><span />
+                        <small>{project.preview === 'property' ? 'havenkey.app / dashboard' : 'myduka.app / overview'}</small>
+                        <span className="preview-live">UI MOCKUP</span>
+                      </div>
+                      <div className="preview-app">
+                        <aside className="preview-sidebar">
+                          <div className="preview-brand"><i>{project.preview === 'property' ? 'H' : 'D'}</i><b>{project.preview === 'property' ? 'havenkey' : 'myduka'}</b></div>
+                          <span className="preview-nav-active">▦ <small>{project.preview === 'property' ? 'Overview' : 'Dashboard'}</small></span>
+                          <span>◫ <small>{project.preview === 'property' ? 'Properties' : 'Inventory'}</small></span>
+                          <span>◷ <small>{project.preview === 'property' ? 'Access log' : 'Sales & orders'}</small></span>
+                          <span>♙ <small>{project.preview === 'property' ? 'Tenants' : 'Customers'}</small></span>
+                        </aside>
+                        <div className="preview-dashboard">
+                          <div className="preview-greeting">
+                            <div><small>{project.preview === 'property' ? 'PROPERTY MANAGEMENT' : 'RETAIL MANAGEMENT'}</small><b>{project.preview === 'property' ? 'Property overview' : 'Store overview'}</b></div>
+                            <span className="preview-date">{project.preview === 'property' ? '＋ Add property' : '＋ New sale'}</span>
+                          </div>
+                          <div className="preview-stats">
+                            {(project.preview === 'property'
+                              ? [['PROPERTIES', '12', 'Across 3 locations'], ['ACTIVE TENANTS', '38', '+4 this month'], ['ACCESS TODAY', '24', 'All entries logged']]
+                              : [['PRODUCTS', '248', 'Across 6 categories'], ['TODAY’S SALES', 'KSh 24.8k', '+12.5% this week'], ['LOW STOCK', '08', 'Items to restock']]
+                            ).map(([label, value, note]) => (
+                              <div className="preview-stat" key={label}><small>{label}</small><b>{value}</b><span>{note}</span></div>
+                            ))}
+                          </div>
+                          <div className="preview-data-panel">
+                            <div className="preview-panel-heading"><b>{project.preview === 'property' ? 'Recent properties' : 'Recent transactions'}</b><span>{project.preview === 'property' ? 'View properties →' : 'View all →'}</span></div>
+                            {(project.preview === 'property'
+                              ? [['M', 'Maple Residences', 'Westlands · 18 units', 'Occupied'], ['G', 'Garden Court', 'Kilimani · 12 units', 'Occupied'], ['R', 'Riverside Place', 'Lavington · 8 units', 'Available']]
+                              : [['↗', 'Sale #1048', 'Today, 10:42 AM · 3 items', 'KSh 4,850'], ['↗', 'Sale #1047', 'Today, 10:18 AM · 2 items', 'KSh 2,300'], ['↗', 'Sale #1046', 'Today, 9:56 AM · 5 items', 'KSh 7,120']]
+                            ).map(([initial, title, detail, status]) => (
+                              <div className="preview-data-row" key={title}><i>{initial}</i><span><b>{title}</b><small>{detail}</small></span><em className={project.preview === 'property' && status === 'Available' ? 'preview-available' : ''}>{status}</em></div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                   <div className="project-number">{project.number}</div>
                   <div className="project-main">
                     <p className="project-type">{project.type}</p>
