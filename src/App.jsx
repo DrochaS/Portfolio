@@ -33,7 +33,7 @@ const projects = [
       'A dual-interface inventory and sales system helping small retailers manage stock, POS records and orders.',
     stack: ['React', 'Redux', 'Flask', 'PostgreSQL'],
     result: 'Reduced API response payloads by 25%',
-    link: 'https://github.com/DrochaS',
+    link: 'https://myduka-frontend-2c4t.vercel.app/login',
   },
   {
     number: '03',
